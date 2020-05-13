@@ -26,6 +26,7 @@ export default function App() {
         <Route path="/" exact component={NavComponent} />
         <Route path="/books" exact component={NavComponent} />
         <Route path="/" exact component={HomeComponent} />
+
         <Route path="/books" exact component={BookList} />
 
         <PrivateRoute path="/dashboard" component={DashNav} />

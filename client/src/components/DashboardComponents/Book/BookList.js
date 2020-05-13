@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Table, Badge } from 'react-bootstrap';
 import Book from './Book';
 import SearchBar from '../SearchBar';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,10 @@ export default class BookList extends Component {
     this.wrapper = React.createRef();
     this.state = {
       books: [],
-      searchedBooks: '',
+      searchedByNameBooks: '',
+      searchedByIdBooks: '',
+      allBooks: 0,
+      showTotalBooks: true,
     };
   }
 
@@ -20,6 +23,13 @@ export default class BookList extends Component {
       try {
         const allBooks = await axios.get('http://localhost:5000/books');
         this.setState({ books: allBooks.data });
+        let totalBooks = 0;
+        this.state.books.forEach((book) => {
+          totalBooks += book.qty;
+        });
+        this.setState({
+          allBooks: totalBooks,
+        });
       } catch (e) {
         console.log(e);
       }
@@ -27,10 +37,22 @@ export default class BookList extends Component {
     getBooks();
   }
 
-  searchHandle = (e) => {
+  searchByNameHandle = (e) => {
     this.setState({
-      searchedBooks: e.target.value,
+      searchedByNameBooks: e.target.value,
     });
+    e.target.value !== ''
+      ? this.setState({ showTotalBooks: false })
+      : this.setState({ showTotalBooks: true });
+  };
+
+  searchByIdHandle = (e) => {
+    this.setState({
+      searchedByIdBooks: e.target.value,
+    });
+    e.target.value !== ''
+      ? this.setState({ showTotalBooks: false })
+      : this.setState({ showTotalBooks: true });
   };
 
   deleteBook = (id) => {
@@ -48,12 +70,16 @@ export default class BookList extends Component {
   };
 
   bookList = () => {
-    let filteredBooks = this.state.books.filter((book) => {
+    let firstFilteredBooks = this.state.books.filter((book) => {
       return book.name
         .toLowerCase()
-        .includes(this.state.searchedBooks.toLowerCase());
+        .includes(this.state.searchedByNameBooks.toLowerCase());
     });
-    return filteredBooks.map((book) => (
+    let secondFilteredBooks = firstFilteredBooks.filter((book) => {
+      return book._id.includes(this.state.searchedByIdBooks.toLowerCase());
+    });
+
+    return secondFilteredBooks.map((book) => (
       <Book book={book} delBook={this.deleteBook} key={book._id} />
     ));
   };
@@ -67,8 +93,14 @@ export default class BookList extends Component {
           </Col>
           <Col md={{ span: 3 }}>
             <SearchBar
-              searchHandle={this.searchHandle}
-              displayText="Search By Book Name"
+              searchHandle={this.searchByNameHandle}
+              displayText="Search by book name"
+            />
+          </Col>
+          <Col md={{ span: 3 }}>
+            <SearchBar
+              searchHandle={this.searchByIdHandle}
+              displayText="Search by book id"
             />
           </Col>
           <Col md={{ span: 3 }}>
@@ -79,9 +111,19 @@ export default class BookList extends Component {
           </Col>
         </Row>
         <br />
+        {this.state.showTotalBooks && (
+          <Row>
+            <Col>
+              <h4>
+                Total books :{' '}
+                <Badge variant="dark">{this.state.allBooks}</Badge>
+              </h4>
+            </Col>
+          </Row>
+        )}
 
         <br />
-        <table className="table">
+        <Table responsive striped>
           <thead className="thead-light">
             <tr>
               <th>Book Id</th>
@@ -92,7 +134,7 @@ export default class BookList extends Component {
             </tr>
           </thead>
           <tbody>{this.bookList()}</tbody>
-        </table>
+        </Table>
       </Container>
     );
   }

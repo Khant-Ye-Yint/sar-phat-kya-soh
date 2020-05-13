@@ -23,7 +23,7 @@ export default function NavbarComponent() {
   const handleShow = () => setShow(true);
   return (
     <Navbar bg="dark" variant="dark" sticky="top" expand="md">
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/dashboard/lend">
         <img
           src="/logo.svg"
           alt="စာဖတ်ကြစို့"
@@ -36,6 +36,7 @@ export default function NavbarComponent() {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
           <NavDropdown title="Let's Lend" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/dashboard/lend">Lend</NavDropdown.Item>
             <NavDropdown.Item href="/dashboard/return">Return</NavDropdown.Item>

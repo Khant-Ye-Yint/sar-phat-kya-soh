@@ -10,6 +10,12 @@ export default function NavbarComponent() {
   if (user != null) {
     username = user.displayName;
   }
+  let dashRoute = '';
+  user === null
+    ? (dashRoute = '/dashboard/login')
+    : (dashRoute = '/dashboard/lend');
+  const loginHandle = () => window.location.assign(dashRoute);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -31,6 +37,7 @@ export default function NavbarComponent() {
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/books">Books</Nav.Link>
+          <Nav.Link href={dashRoute}>Dashboard</Nav.Link>
         </Nav>
         <Badge variant="secondary" className="mr-2 mb-3">
           {username}
@@ -41,10 +48,7 @@ export default function NavbarComponent() {
             Log Out
           </Button>
         ) : (
-          <Button
-            variant="outline-light"
-            onClick={() => window.open('/dashboard/login')}
-          >
+          <Button variant="outline-light" onClick={loginHandle}>
             Log In
           </Button>
         )}

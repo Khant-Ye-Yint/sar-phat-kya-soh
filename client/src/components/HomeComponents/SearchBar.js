@@ -6,7 +6,7 @@ export default function SearchBar(props) {
     <Form inline>
       <FormControl
         type="text"
-        placeholder="Search Book Name"
+        placeholder={props.holderText}
         className="mr-sm-2"
         onChange={props.searchHandle}
       />

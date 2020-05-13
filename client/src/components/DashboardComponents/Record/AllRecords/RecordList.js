@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Table, Badge } from 'react-bootstrap';
 import Record from './Record';
 import SearchBar from '../../SearchBar';
 
@@ -10,7 +10,10 @@ export default class RecordList extends Component {
     this.wrapper = React.createRef();
     this.state = {
       records: [],
-      searchedRecords: '',
+      searchedByBookRecords: '',
+      searchedByStudentRecords: '',
+      allRecords: 0,
+      showTotalRecords: true,
     };
   }
 
@@ -19,6 +22,9 @@ export default class RecordList extends Component {
       try {
         const allRecords = await axios.get('http://localhost:5000/records');
         this.setState({ records: allRecords.data });
+        this.setState({
+          allRecords: this.state.records.length,
+        });
       } catch (e) {
         console.log(e);
       }
@@ -26,10 +32,21 @@ export default class RecordList extends Component {
     getRecords();
   }
 
-  searchHandle = (e) => {
+  searchByBookHandle = (e) => {
     this.setState({
-      searchedRecords: e.target.value,
+      searchedByBookRecords: e.target.value,
     });
+    e.target.value !== ''
+      ? this.setState({ showTotalRecords: false })
+      : this.setState({ showTotalRecords: true });
+  };
+  searchByStudentHandle = (e) => {
+    this.setState({
+      searchedByStudentRecords: e.target.value,
+    });
+    e.target.value !== ''
+      ? this.setState({ showTotalRecords: false })
+      : this.setState({ showTotalRecords: true });
   };
 
   deleteRecord = (id) => {
@@ -47,10 +64,13 @@ export default class RecordList extends Component {
   };
 
   recordList = () => {
-    let filteredRecords = this.state.records.filter((record) => {
-      return record.bookId.includes(this.state.searchedRecords);
+    let firstFilteredRecords = this.state.records.filter((record) => {
+      return record.bookId.includes(this.state.searchedByBookRecords);
     });
-    return filteredRecords.map((record) => (
+    let secondFilteredRecords = firstFilteredRecords.filter((record) => {
+      return record.studentId.includes(this.state.searchedByStudentRecords);
+    });
+    return secondFilteredRecords.map((record) => (
       <Record record={record} delRecord={this.deleteRecord} key={record._id} />
     ));
   };
@@ -59,19 +79,35 @@ export default class RecordList extends Component {
     return (
       <Container className="mt-3">
         <Row>
-          <Col md={4}>
+          <Col md={3}>
             <h3>All Records</h3>
           </Col>
-          <Col md={4}>
+          <Col md={3}>
             <SearchBar
-              searchHandle={this.searchHandle}
-              displayText="Search by Book Id"
+              searchHandle={this.searchByBookHandle}
+              displayText="Search by book id"
+            />
+          </Col>
+          <Col md={3}>
+            <SearchBar
+              searchHandle={this.searchByStudentHandle}
+              displayText="Search by student id"
             />
           </Col>
         </Row>
         <br />
+        {this.state.showTotalRecords && (
+          <Row>
+            <Col>
+              <h4>
+                Total records :{' '}
+                <Badge variant="dark">{this.state.allRecords}</Badge>
+              </h4>
+            </Col>
+          </Row>
+        )}
         <br />
-        <table className="table">
+        <Table responsive striped>
           <thead className="thead-light">
             <tr>
               <th>Book Id</th>
@@ -83,7 +119,7 @@ export default class RecordList extends Component {
             </tr>
           </thead>
           <tbody>{this.recordList()}</tbody>
-        </table>
+        </Table>
       </Container>
     );
   }

@@ -9,13 +9,19 @@ export default class BookList extends Component {
     super();
     this.state = {
       books: [],
-      searchedBooks: '',
+      searchedBookNames: '',
+      searchedAuthors: '',
     };
   }
 
-  searchHandle = (e) => {
+  searchByBookName = (e) => {
     this.setState({
-      searchedBooks: e.target.value,
+      searchedBookNames: e.target.value,
+    });
+  };
+  searchByAuthorName = (e) => {
+    this.setState({
+      searchedAuthors: e.target.value,
     });
   };
 
@@ -33,13 +39,26 @@ export default class BookList extends Component {
     getBooks();
   }
 
-  render() {
-    let filteredBooks = this.state.books.filter((book) => {
+  bookList = () => {
+    let firstFilteredBooks = this.state.books.filter((book) => {
       return book.name
         .toLowerCase()
-        .includes(this.state.searchedBooks.toLowerCase());
+        .includes(this.state.searchedBookNames.toLowerCase());
     });
+    let secondFilteredBooks = firstFilteredBooks.filter((book) => {
+      return book.author
+        .toLowerCase()
+        .includes(this.state.searchedAuthors.toLowerCase());
+    });
+    return secondFilteredBooks.map((book) => (
+      <Col key={book._id}>
+        {' '}
+        <Book data={book} /> <br />
+      </Col>
+    ));
+  };
 
+  render() {
     return (
       <Container fluid>
         <Row>
@@ -61,19 +80,21 @@ export default class BookList extends Component {
         </Row>{' '}
         <br />
         <Row>
-          <Col sm={{ span: 4 }}>
-            <SearchBar searchHandle={this.searchHandle} />
+          <Col sm={{ span: 2 }}>
+            <SearchBar
+              searchHandle={this.searchByBookName}
+              holderText="Search by book name.."
+            />
+          </Col>
+          <Col sm={{ span: 2 }}>
+            <SearchBar
+              searchHandle={this.searchByAuthorName}
+              holderText="Search by author name.."
+            />
           </Col>
         </Row>{' '}
         <br />
-        <Row className="mb-3">
-          {filteredBooks.map((book) => (
-            <Col key={book._id}>
-              {' '}
-              <Book data={book} /> <br />
-            </Col>
-          ))}
-        </Row>
+        <Row className="mb-3">{this.bookList()}</Row>
       </Container>
     );
   }

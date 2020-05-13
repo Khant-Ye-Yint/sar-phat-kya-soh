@@ -1,9 +1,32 @@
 import React from 'react';
-import { Jumbotron, Button } from 'react-bootstrap';
+import { Jumbotron, Button, Carousel } from 'react-bootstrap';
 
 export default function HomeComponent() {
   return (
     <div>
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589380947/UCSP/uni2_vxrrc3.jpg"
+            alt="First slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589380946/UCSP/uni_byh5rv.jpg"
+            alt="Third slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589380941/UCSP/uni4_rlxxek.jpg"
+            alt="Third slide"
+          />
+        </Carousel.Item>
+      </Carousel>
       <Jumbotron>
         <h4>
           မင်္ဂလာပါခင်ဗျာ။ ကျွန်တော်တို့ ကွန်ပျူတာတက္ကသိုလ်(ပုသိမ်)
