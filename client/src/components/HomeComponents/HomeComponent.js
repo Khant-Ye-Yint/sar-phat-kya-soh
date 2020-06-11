@@ -8,22 +8,41 @@ export default function HomeComponent() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589380947/UCSP/uni2_vxrrc3.jpg"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589652872/UCSP/uni2_iivljr.jpg"
             alt="First slide"
+            height="50%"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589380946/UCSP/uni_byh5rv.jpg"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589652872/UCSP/uni4_g07lzg.jpg"
             alt="Third slide"
+            height="50%"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589380941/UCSP/uni4_rlxxek.jpg"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589652872/UCSP/uni5_geohkt.jpg"
             alt="Third slide"
+            height="50%"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589652872/UCSP/uni3_ibce6x.jpg"
+            alt="Fourth slide"
+            height="50%"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://res.cloudinary.com/wukyanlay/image/upload/v1589652872/UCSP/uni1_h757ub.jpg"
+            alt="Fifth slide"
+            height="50%"
           />
         </Carousel.Item>
       </Carousel>
