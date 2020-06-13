@@ -31,7 +31,7 @@ export default class BookList extends Component {
     Aos.init({ duration: 1500 });
     const getBooks = async () => {
       try {
-        const allBooks = await axios.get('http://localhost:5000/books');
+        const allBooks = await axios.get('/books');
         this.setState({
           books: allBooks.data,
         });
