@@ -8,10 +8,14 @@ export default function Book(props) {
   const handleShow = () => setShow(true);
   return (
     <div>
-      <Card style={{ width: '9rem' }} onClick={handleShow}>
+      <Card
+        style={{ width: '9rem' }}
+        onClick={handleShow}
+        className="shadow-lg p-3 mb-5 bg-white rounded"
+      >
         <Card.Img variant="top" src={props.data.imgUrl} />
         <Card.Body className="rounded">
-          <Card.Title style={{ fontSize: '15px' }}>
+          <Card.Title style={{ fontSize: '15px', fontWeight: 'bolder' }}>
             {props.data.name}
           </Card.Title>
           <Card.Text style={{ fontSize: '13px' }}>
