@@ -11,14 +11,14 @@ export default function Book(props) {
       <Card
         style={{ width: '9rem' }}
         onClick={handleShow}
-        className="shadow-lg p-3 mb-5 bg-white rounded"
+        className="shadow-lg bg-white rounded"
       >
         <Card.Img variant="top" src={props.data.imgUrl} />
         <Card.Body className="rounded">
           <Card.Title style={{ fontSize: '15px', fontWeight: 'bolder' }}>
             {props.data.name}
           </Card.Title>
-          <Card.Text style={{ fontSize: '13px' }}>
+          <Card.Text style={{ fontSize: '13px', fontWeight: 'lighter' }}>
             <span>{props.data.author}</span> <br />
           </Card.Text>
         </Card.Body>

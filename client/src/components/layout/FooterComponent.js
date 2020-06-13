@@ -3,7 +3,11 @@ import React from 'react';
 export default function FooterComponent() {
   return (
     <div
-      style={{ backgroundColor: '#1a1a1a', padding: '50px', color: 'white' }}
+      style={{
+        backgroundColor: '#1a1a1a',
+        padding: '50px',
+        color: 'white',
+      }}
     >
       <footer class="footer">
         <div class="container">
