@@ -36,7 +36,7 @@ export default function NavbarComponent() {
       <Navbar.Collapse>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/books">Books</Nav.Link>
+          <Nav.Link href="/allBooks">Books</Nav.Link>
           <Nav.Link href={dashRoute}>Dashboard</Nav.Link>
         </Nav>
         <Badge variant="secondary" className="mr-2 mb-3">

@@ -25,10 +25,10 @@ export default function App() {
     <AuthProvider>
       <Router>
         <Route path="/" exact component={NavComponent} />
-        <Route path="/books" exact component={NavComponent} />
+        <Route path="/allBooks" exact component={NavComponent} />
         <Route path="/" exact component={HomeComponent} />
 
-        <Route path="/books" exact component={BookList} />
+        <Route path="/allBooks" exact component={BookList} />
 
         <PrivateRoute path="/dashboard" component={DashNav} />
         <PrivateRoute path="/dashboard/lend" exact component={Lend} />
@@ -59,7 +59,7 @@ export default function App() {
 
         <Route exact path="/dashboard/login" component={Login} />
         <Route path="/" exact component={Footer} />
-        <Route path="/books" exact component={Footer} />
+        <Route path="/allBooks" exact component={Footer} />
       </Router>
     </AuthProvider>
   );
