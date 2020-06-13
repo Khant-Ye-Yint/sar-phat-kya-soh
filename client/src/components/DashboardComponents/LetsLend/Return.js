@@ -33,7 +33,7 @@ export default class LetsLend extends Component {
 
     const getRecords = async () => {
       try {
-        const allBooks = await axios.get('http://localhost:5000/records');
+        const allBooks = await axios.get('/records');
         this.setState({ records: allBooks.data });
       } catch (e) {
         console.log(e);
@@ -70,7 +70,7 @@ export default class LetsLend extends Component {
     const returnBook = async () => {
       try {
         const updatedRecord = await axios.patch(
-          'http://localhost:5000/records/' + filteredRecord[0]._id,
+          '/records/' + filteredRecord[0]._id,
           record
         );
         console.log(updatedRecord);

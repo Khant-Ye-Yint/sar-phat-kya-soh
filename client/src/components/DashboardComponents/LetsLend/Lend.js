@@ -50,10 +50,7 @@ export default class LetsLend extends Component {
 
     const doPostReq = async () => {
       try {
-        const addedRecord = await axios.post(
-          'http://localhost:5000/records',
-          record
-        );
+        const addedRecord = await axios.post('/records', record);
         console.log(addedRecord);
       } catch (e) {
         console.log(e);

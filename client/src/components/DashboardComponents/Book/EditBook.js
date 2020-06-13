@@ -17,7 +17,7 @@ export default class EditBook extends Component {
     const getBooks = async () => {
       try {
         const specBook = await axios.get(
-          'http://localhost:5000/books/' + this.props.match.params.id
+          '/books/' + this.props.match.params.id
         );
         this.setState({
           name: specBook.data.name,
@@ -44,7 +44,7 @@ export default class EditBook extends Component {
     const doPatchReq = async () => {
       try {
         const updatedBook = await axios.patch(
-          'http://localhost:5000/books/' + this.props.match.params.id,
+          '/books/' + this.props.match.params.id,
           book
         );
         console.log(updatedBook);
@@ -54,7 +54,7 @@ export default class EditBook extends Component {
     };
     doPatchReq();
 
-    window.location.href = 'http://localhost:3000/dashboard/books';
+    window.location.href = '/dashboard/books';
   };
 
   changeHandle = (e) => {

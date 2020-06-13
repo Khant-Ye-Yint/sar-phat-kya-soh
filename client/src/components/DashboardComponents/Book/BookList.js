@@ -21,7 +21,7 @@ export default class BookList extends Component {
   componentDidMount() {
     const getBooks = async () => {
       try {
-        const allBooks = await axios.get('http://localhost:5000/books');
+        const allBooks = await axios.get('/books');
         this.setState({ books: allBooks.data });
         let totalBooks = 0;
         this.state.books.forEach((book) => {
@@ -57,9 +57,7 @@ export default class BookList extends Component {
 
   deleteBook = (id) => {
     const dBook = async () => {
-      const deletedBook = await axios.delete(
-        'http://localhost:5000/books/' + id
-      );
+      const deletedBook = await axios.delete('/books/' + id);
       this.setState({
         books: this.state.books.filter((b) => b._id !== deletedBook._id),
       });

@@ -20,7 +20,7 @@ export default class RecordList extends Component {
   componentDidMount() {
     const getRecords = async () => {
       try {
-        const allRecords = await axios.get('http://localhost:5000/records');
+        const allRecords = await axios.get('/records');
         this.setState({ records: allRecords.data });
         this.setState({
           allRecords: this.state.records.length,
@@ -51,9 +51,7 @@ export default class RecordList extends Component {
 
   deleteRecord = (id) => {
     const dRecord = async () => {
-      const deletedRecord = await axios.delete(
-        'http://localhost:5000/records/' + id
-      );
+      const deletedRecord = await axios.delete('/records/' + id);
       this.setState({
         books: this.state.records.filter((b) => b._id !== deletedRecord._id),
       });
