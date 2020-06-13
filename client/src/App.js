@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthProvider } from './auth/Auth';
 import PrivateRoute from './auth/PrivateRoute';
 import NavComponent from './components/layout/NavbarComponent';
+import Footer from './components/layout/FooterComponent';
 
 import HomeComponent from './components/HomeComponents/HomeComponent';
 import BookList from './components/HomeComponents/BookList';
@@ -57,6 +58,8 @@ export default function App() {
         <PrivateRoute path="/dashboard/myAcc" exact component={MyAcc} />
 
         <Route exact path="/dashboard/login" component={Login} />
+        <Route path="/" exact component={Footer} />
+        <Route path="/books" exact component={Footer} />
       </Router>
     </AuthProvider>
   );

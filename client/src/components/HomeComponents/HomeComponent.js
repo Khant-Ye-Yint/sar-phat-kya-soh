@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Jumbotron, Button, Carousel } from 'react-bootstrap';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 export default function HomeComponent() {
+  useEffect(() => {
+    Aos.init({ duration: 1500 });
+  });
   return (
     <div>
       <Carousel>
@@ -46,7 +51,11 @@ export default function HomeComponent() {
           />
         </Carousel.Item>
       </Carousel>
-      <Jumbotron>
+      <Jumbotron
+        data-aos="fade-right"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
         <h4>
           မင်္ဂလာပါခင်ဗျာ။ ကျွန်တော်တို့ ကွန်ပျူတာတက္ကသိုလ်(ပုသိမ်)
           ကျောင်းသားသမဂ္ဂရဲ့ "စာဖတ်ကြစို့" page ကနေကြိုဆိုလိုက်ပါတယ်။

@@ -3,6 +3,8 @@ import Book from './Book';
 import SearchBar from './SearchBar';
 import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 export default class BookList extends Component {
   constructor() {
@@ -26,6 +28,7 @@ export default class BookList extends Component {
   };
 
   componentDidMount() {
+    Aos.init({ duration: 1500 });
     const getBooks = async () => {
       try {
         const allBooks = await axios.get('http://localhost:5000/books');
@@ -51,7 +54,7 @@ export default class BookList extends Component {
         .includes(this.state.searchedAuthors.toLowerCase());
     });
     return secondFilteredBooks.map((book) => (
-      <Col key={book._id}>
+      <Col key={book._id} data-aos="zoom-in-up">
         {' '}
         <Book data={book} /> <br />
       </Col>
@@ -80,13 +83,13 @@ export default class BookList extends Component {
         </Row>{' '}
         <br />
         <Row>
-          <Col sm={{ span: 2 }}>
+          <Col xs={12} md={3}>
             <SearchBar
               searchHandle={this.searchByBookName}
               holderText="Search by book name.."
             />
           </Col>
-          <Col sm={{ span: 2 }}>
+          <Col xs={12} md={3}>
             <SearchBar
               searchHandle={this.searchByAuthorName}
               holderText="Search by author name.."
