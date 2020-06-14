@@ -21,24 +21,21 @@ export default function FooterComponent() {
                 <br />
                 Myanmar
                 <br />
-                Tel.: +852 1234 5678
+                Tel1: +95 779 000 658
                 <br />
-                Fax: +988 7765 7786
+                Tel2: +95 957 156 912
                 <br />
                 Email:{' '}
-                <a href="ucspathein@wukong.gamil.com">
-                  ucspathein@wukong.gamil.com
+                <a href="tinhtunwin@ucspathein.edu.mm">
+                  tinhtunwin@ucspathein.edu.mm
                 </a>
               </address>
             </div>
             <div class="col-12 col-sm-4 align-self-center">
               <div class="text-center">
-                <a href="http://google.com/+">Google+</a>
-                <a href="http://www.facebook.com/profile.php?id=">Facebook</a>
-                <a href="http://www.linkedin.com/in/">LinkedIn</a>
-                <a href="http://twitter.com/">Twitter</a>
-                <a href="http://youtube.com/">YouTube</a>
-                <a href="mailto:">Mail</a>
+                <a href="https://www.facebook.com/ttp.ucspsu/">
+                  <img src="/facebook-logo.png" width="100px" />{' '}
+                </a>
               </div>
             </div>
           </div>

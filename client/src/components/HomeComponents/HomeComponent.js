@@ -51,11 +51,7 @@ export default function HomeComponent() {
           />
         </Carousel.Item>
       </Carousel>
-      <Jumbotron
-        data-aos="fade-right"
-        data-aos-offset="300"
-        data-aos-easing="ease-in-sine"
-      >
+      <Jumbotron>
         <h4>
           မင်္ဂလာပါခင်ဗျာ။ ကျွန်တော်တို့ ကွန်ပျူတာတက္ကသိုလ်(ပုသိမ်)
           ကျောင်းသားသမဂ္ဂရဲ့ "စာဖတ်ကြစို့" page ကနေကြိုဆိုလိုက်ပါတယ်။
