@@ -54,9 +54,16 @@ export default class BookList extends Component {
         .includes(this.state.searchedAuthors.toLowerCase());
     });
     return secondFilteredBooks.map((book) => (
-      <Col key={book._id} data-aos="zoom-in-up">
+      <Col
+        key={book._id}
+        data-aos="zoom-in-up"
+        xs={6}
+        md={3}
+        lg={2}
+        className="mb-3"
+      >
         {' '}
-        <Book data={book} /> <br />
+        <Book data={book} />
       </Col>
     ));
   };
@@ -64,40 +71,42 @@ export default class BookList extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col>
-            <span
-              className="text-dark font-weight-bold "
-              style={{ fontSize: '30px' }}
-            >
-              All Books{' '}
-            </span>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <span className="text-secondary font-weight-lighter">
-              (From newest to oldest.)
-            </span>
-          </Col>
-        </Row>{' '}
-        <br />
-        <Row>
-          <Col xs={12} md={3}>
-            <SearchBar
-              searchHandle={this.searchByBookName}
-              holderText="Search by book name.."
-            />
-          </Col>
-          <Col xs={12} md={3}>
-            <SearchBar
-              searchHandle={this.searchByAuthorName}
-              holderText="Search by author name.."
-            />
-          </Col>
-        </Row>{' '}
-        <br />
-        <Row className="mb-3">{this.bookList()}</Row>
+        <Container className="mt-3">
+          <Row>
+            <Col>
+              <span
+                className="text-dark font-weight-bold "
+                style={{ fontSize: '30px' }}
+              >
+                All Books{' '}
+              </span>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <span className="text-secondary font-weight-lighter">
+                (From newest to oldest.)
+              </span>
+            </Col>
+          </Row>{' '}
+          <br />
+          <Row>
+            <Col xs={12} md={3}>
+              <SearchBar
+                searchHandle={this.searchByBookName}
+                holderText="Search by book name.."
+              />
+            </Col>
+            <Col xs={12} md={3}>
+              <SearchBar
+                searchHandle={this.searchByAuthorName}
+                holderText="Search by author name.."
+              />
+            </Col>
+          </Row>{' '}
+          <br />
+          <Row>{this.bookList()} </Row>
+        </Container>
       </Container>
     );
   }
