@@ -12,7 +12,7 @@ export default function FooterComponent() {
       <footer class="footer">
         <div class="container">
           <div class="row">
-            <div class="col-7 col-sm-5">
+            <div class="col-12 col-sm-5">
               <h5>Our Address</h5>
               <address class="address">
                 University of Computer Studies
